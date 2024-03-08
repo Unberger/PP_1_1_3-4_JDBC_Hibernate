@@ -65,9 +65,9 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<>();
         String sql = "SELECT * FROM usertable";
-        PreparedStatement preparedStatement = null;
 
-        try {preparedStatement = connection.prepareStatement(sql);
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
@@ -81,20 +81,12 @@ public class UserDaoJDBCImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-        try {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-    }
         return userList;
     }
 
     public void cleanUsersTable() {
-        String sql = "DROP TABLE IF EXISTS usertable";
+        String sql = "TRUNCATE TABLE usertable";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.execute();
         } catch (SQLException e) {
