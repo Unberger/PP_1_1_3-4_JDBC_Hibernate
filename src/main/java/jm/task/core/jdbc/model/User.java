@@ -1,21 +1,31 @@
 package jm.task.core.jdbc.model;
 
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
+
+@Entity
+@Table(name = "usertable")
 public class User {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column
+    //можно не писать @Column(name = "age"), так как имя совпадает с переменной
+    @Column(name = "age")
     private Byte age;
 
     public User() {
