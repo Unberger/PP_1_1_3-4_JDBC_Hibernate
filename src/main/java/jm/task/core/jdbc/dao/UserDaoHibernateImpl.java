@@ -38,10 +38,10 @@ public class UserDaoHibernateImpl implements UserDao {
                     "name VARCHAR(50) NOT NULL, lastName VARCHAR(50) NOT NULL, " +
                     "age TINYINT NOT NULL)";
 
-            Query query = (Query) session.createSQLQuery(sql).addEntity(User.class);
+//            Query query = (Query) session.createSQLQuery(sql).addEntity(User.class);
 
             transaction.commit();
-//            session.close();
+            session.close();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
