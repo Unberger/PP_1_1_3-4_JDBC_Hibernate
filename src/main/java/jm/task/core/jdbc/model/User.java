@@ -24,22 +24,16 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    //можно не писать @Column(name = "age"), так как имя совпадает с переменной
     @Column(name = "age")
     private Byte age;
 
     public User() {
-
     }
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
